@@ -3,6 +3,7 @@ export interface PipelineRequest {
   max_results: number;
   filter_keywords: string[];
   filter_mode: "any" | "all";
+  exclude_keywords: string[];
   include_subtitles: boolean;
   include_comments: boolean;
   subtitle_languages: string[];

@@ -12,6 +12,7 @@ interface Props {
 export default function SearchForm({ onPipelineStarted, isRunning }: Props) {
   const [keywords, setKeywords] = useState("");
   const [filterKeywords, setFilterKeywords] = useState("");
+  const [excludeKeywords, setExcludeKeywords] = useState("");
   const [maxResults, setMaxResults] = useState(10);
   const [includeSubtitles, setIncludeSubtitles] = useState(true);
   const [includeComments, setIncludeComments] = useState(true);
@@ -35,6 +36,10 @@ export default function SearchForm({ onPipelineStarted, isRunning }: Props) {
       keywords: keywordList,
       max_results: maxResults,
       filter_keywords: filterKeywords
+        .split(",")
+        .map((k) => k.trim())
+        .filter(Boolean),
+      exclude_keywords: excludeKeywords
         .split(",")
         .map((k) => k.trim())
         .filter(Boolean),
@@ -72,23 +77,44 @@ export default function SearchForm({ onPipelineStarted, isRunning }: Props) {
           className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           disabled={isRunning}
         />
+        <p className="text-xs text-gray-500 mt-1">
+          YouTube에서 이 키워드로 영상을 검색합니다
+        </p>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          필터 키워드 (선택, 쉼표로 구분)
-        </label>
-        <input
-          type="text"
-          value={filterKeywords}
-          onChange={(e) => setFilterKeywords(e.target.value)}
-          placeholder="예: 대선, 총선, 국회"
-          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          disabled={isRunning}
-        />
-        <p className="text-xs text-gray-500 mt-1">
-          제목/설명/태그에 이 키워드가 포함된 영상만 수집합니다
-        </p>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-green-700 mb-1">
+            포함 필터 (선택, 쉼표로 구분)
+          </label>
+          <input
+            type="text"
+            value={filterKeywords}
+            onChange={(e) => setFilterKeywords(e.target.value)}
+            placeholder="예: 대선, 총선, 국회"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+            disabled={isRunning}
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            이 키워드가 포함된 영상<span className="font-semibold text-green-600">만</span> 수집합니다
+          </p>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-red-700 mb-1">
+            제외 필터 (선택, 쉼표로 구분)
+          </label>
+          <input
+            type="text"
+            value={excludeKeywords}
+            onChange={(e) => setExcludeKeywords(e.target.value)}
+            placeholder="예: 지난총선, 재보궐, 지방선거"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-400"
+            disabled={isRunning}
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            이 키워드가 포함된 영상을 <span className="font-semibold text-red-600">제외</span>합니다
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-3 gap-4">

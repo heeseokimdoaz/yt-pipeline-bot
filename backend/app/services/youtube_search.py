@@ -14,8 +14,13 @@ def _build_youtube():
     return build("youtube", "v3", developerKey=settings.youtube_api_key)
 
 
-def _search_sync(keyword: str, max_results: int) -> list[VideoData]:
-    """Synchronous YouTube search + metadata enrichment."""
+def _search_sync(
+    keyword: str, max_results: int, page_token: str | None = None
+) -> tuple[list[VideoData], str | None]:
+    """Synchronous YouTube search + metadata enrichment.
+
+    Returns (videos, next_page_token).
+    """
     youtube = _build_youtube()
 
     # search.list costs 100 quota units
@@ -24,18 +29,20 @@ def _search_sync(keyword: str, max_results: int) -> list[VideoData]:
             f"YouTube API quota exhausted. Remaining: {quota_tracker.remaining}"
         )
 
-    search_response = (
-        youtube.search()
-        .list(
-            q=keyword,
-            part="id,snippet",
-            type="video",
-            maxResults=min(max_results, 50),
-            relevanceLanguage="ko",
-            order="relevance",
-        )
-        .execute()
+    params = dict(
+        q=keyword,
+        part="id,snippet",
+        type="video",
+        maxResults=min(max_results, 50),
+        relevanceLanguage="ko",
+        order="relevance",
     )
+    if page_token:
+        params["pageToken"] = page_token
+
+    search_response = youtube.search().list(**params).execute()
+
+    next_page_token = search_response.get("nextPageToken")
 
     video_ids = [
         item["id"]["videoId"]
@@ -44,7 +51,7 @@ def _search_sync(keyword: str, max_results: int) -> list[VideoData]:
     ]
 
     if not video_ids:
-        return []
+        return [], None
 
     # videos.list costs 1 quota unit per call
     if not quota_tracker.consume(1):
@@ -80,9 +87,11 @@ def _search_sync(keyword: str, max_results: int) -> list[VideoData]:
             )
         )
 
-    return videos
+    return videos, next_page_token
 
 
-async def search_videos(keyword: str, max_results: int) -> list[VideoData]:
-    """Async wrapper for YouTube search."""
-    return await asyncio.to_thread(_search_sync, keyword, max_results)
+async def search_videos(
+    keyword: str, max_results: int, page_token: str | None = None
+) -> tuple[list[VideoData], str | None]:
+    """Async wrapper for YouTube search. Returns (videos, next_page_token)."""
+    return await asyncio.to_thread(_search_sync, keyword, max_results, page_token)

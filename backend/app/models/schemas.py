@@ -14,6 +14,7 @@ class PipelineRequest(BaseModel):
     max_results: int = Field(default=10, le=50)
     filter_keywords: list[str] = []
     filter_mode: Literal["any", "all"] = "any"
+    exclude_keywords: list[str] = []
     include_subtitles: bool = True
     include_comments: bool = True
     subtitle_languages: list[str] = ["ko", "en"]

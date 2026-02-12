@@ -83,42 +83,78 @@ async def _execute_pipeline(run_id: str, request: PipelineRequest):
     total_comments = 0
 
     try:
-        # --- Step 1: Search ---
+        # --- Step 1 & 2: Search + Filter loop ---
+        has_filter = bool(request.filter_keywords or request.exclude_keywords)
+        target = request.max_results
+        max_pages = 5  # safety limit to avoid infinite pagination
+
         await _emit(run_id, "search_started", {
             "run_id": run_id,
             "keywords": request.keywords,
         })
 
-        all_videos = []
-        for keyword in request.keywords:
-            videos = await search_videos(keyword, request.max_results)
-            all_videos.extend(videos)
-            await _emit(run_id, "search_progress", {
-                "keyword": keyword,
-                "found": len(videos),
-                "total_so_far": len(all_videos),
-            })
+        filtered: list = []
+        seen: set[str] = set()
+        total_searched = 0
 
-        # Deduplicate by video_id
-        seen = set()
-        unique_videos = []
-        for v in all_videos:
-            if v.video_id not in seen:
-                seen.add(v.video_id)
-                unique_videos.append(v)
+        # Track page tokens per keyword
+        page_tokens: dict[str, str | None] = {kw: None for kw in request.keywords}
 
-        # --- Step 2: Filter ---
-        if request.filter_keywords:
-            filtered = filter_videos(
-                unique_videos, request.filter_keywords, request.filter_mode
-            )
-        else:
-            filtered = unique_videos
+        for page in range(max_pages):
+            if len(filtered) >= target:
+                break
+
+            # Check if any keyword still has pages left
+            active_keywords = [
+                kw for kw in request.keywords
+                if page_tokens.get(kw) is not None or page == 0
+            ]
+            if not active_keywords:
+                break
+
+            page_videos = []
+            for keyword in active_keywords:
+                batch_size = request.max_results * 5 if has_filter else request.max_results
+                videos, next_token = await search_videos(
+                    keyword, batch_size, page_tokens[keyword]
+                )
+                page_tokens[keyword] = next_token
+                for v in videos:
+                    if v.video_id not in seen:
+                        seen.add(v.video_id)
+                        page_videos.append(v)
+
+                await _emit(run_id, "search_progress", {
+                    "keyword": keyword,
+                    "found": len(videos),
+                    "page": page + 1,
+                    "total_so_far": len(seen),
+                })
+
+            total_searched += len(page_videos)
+
+            if has_filter:
+                passed = filter_videos(
+                    page_videos,
+                    request.filter_keywords,
+                    request.filter_mode,
+                    exclude_keywords=request.exclude_keywords,
+                )
+                filtered.extend(passed)
+            else:
+                filtered.extend(page_videos)
+
+            # If first page already fills target or no filter, no need to loop
+            if not has_filter:
+                break
+
+        # Trim to target count
+        filtered = filtered[:target]
 
         await _emit(run_id, "filter_progress", {
-            "total_searched": len(unique_videos),
+            "total_searched": total_searched,
             "passed": len(filtered),
-            "filtered_out": len(unique_videos) - len(filtered),
+            "filtered_out": total_searched - len(filtered),
         })
 
         # --- Step 3: Subtitles ---
