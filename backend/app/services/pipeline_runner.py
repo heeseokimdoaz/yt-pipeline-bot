@@ -157,7 +157,7 @@ async def _execute_pipeline(run_id: str, request: PipelineRequest):
             "filtered_out": total_searched - len(filtered),
         })
 
-        # --- Step 3: Subtitles ---
+        # --- Step 3: Subtitles (TOP PRIORITY — extracted first) ---
         if request.include_subtitles:
             for i, video in enumerate(filtered):
                 sub_result = await extract_subtitles(
@@ -178,7 +178,7 @@ async def _execute_pipeline(run_id: str, request: PipelineRequest):
                     "progress": f"{i + 1}/{len(filtered)}",
                 })
 
-        # --- Step 4: Comments ---
+        # --- Step 4: Comments (separate pass — subtitles already safe) ---
         if request.include_comments:
             for i, video in enumerate(filtered):
                 comments = await collect_comments(

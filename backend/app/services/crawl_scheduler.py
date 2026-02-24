@@ -143,9 +143,8 @@ async def _crawl_single_channel(channel, run_id: str) -> ChannelCrawlResult:
         store_videos(videos, run_id)
         result.new_videos = len(videos)
 
-        # 5. Subtitles + Comments for each new video
+        # 5. Subtitles FIRST (top priority — must succeed even if comments fail)
         for video in videos:
-            # Subtitles
             sub_result = await extract_subtitles(
                 video.video_id, settings.crawl_subtitle_languages
             )
@@ -153,7 +152,8 @@ async def _crawl_single_channel(channel, run_id: str) -> ChannelCrawlResult:
                 chunks = store_subtitles(sub_result, run_id)
                 result.subtitles_collected += chunks
 
-            # Comments
+        # 6. Comments SECOND (independent pass — subtitle data is already safe)
+        for video in videos:
             comments = await collect_comments(
                 video.video_id, settings.crawl_max_comments_per_video
             )
