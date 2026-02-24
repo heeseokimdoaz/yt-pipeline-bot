@@ -41,6 +41,7 @@ class VideoData(BaseModel):
     description: str = ""
     tags: list[str] = []
     thumbnail_url: str = ""
+    channel_category: str = ""
 
 
 class SubtitleSegment(BaseModel):

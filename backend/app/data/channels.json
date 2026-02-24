@@ -1,0 +1,272 @@
+[
+  {
+    "channel_id": "UChlv4GSd7OQl3js-jkLOnFA",
+    "channel_name": "삼프로TV",
+    "handle": "@3protv",
+    "uploads_playlist_id": "UUhlv4GSd7OQl3js-jkLOnFA",
+    "category": "중립/종합",
+    "description": "경제/데이터 기반 객관적 이슈 분석 및 여야 정책 검증",
+    "enabled": true
+  },
+  {
+    "channel_id": "UChlgI3UHCOnwUGzWzbJ3H5w",
+    "channel_name": "YTN",
+    "handle": "@ytnnews24",
+    "uploads_playlist_id": "UUhlgI3UHCOnwUGzWzbJ3H5w",
+    "category": "중립/종합",
+    "description": "24시간 보도전문 종합 뉴스 (속보 및 팩트 중심)",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCTHCOPwqNfZ0uiKOvFyhGwg",
+    "channel_name": "연합뉴스TV",
+    "handle": "@yonhapnewstv23",
+    "uploads_playlist_id": "UUTHCOPwqNfZ0uiKOvFyhGwg",
+    "category": "중립/종합",
+    "description": "24시간 보도전문 종합 뉴스 (속보 및 팩트 중심)",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCL-WOj1FxKR8Hlzg5tvnWKg",
+    "channel_name": "국회방송 (NATV)",
+    "handle": "@NATV_korea",
+    "uploads_playlist_id": "UUL-WOj1FxKR8Hlzg5tvnWKg",
+    "category": "중립/종합",
+    "description": "국회 현장 가공 없는 생중계 (가장 객관적인 원본 영상)",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCsJ6RuBiTVWRX156FVbeaGg",
+    "channel_name": "슈카월드",
+    "handle": "@syukaworld",
+    "uploads_playlist_id": "UUsJ6RuBiTVWRX156FVbeaGg",
+    "category": "중립/종합",
+    "description": "경제/역사적 관점에서의 이슈 분석 (이념적 논쟁 배제)",
+    "enabled": true
+  },
+  {
+    "channel_id": "UC5m3fwPYuobj29xSvg3xk8g",
+    "channel_name": "CBS 김현정의 뉴스쇼",
+    "handle": "@cbsnewsshow",
+    "uploads_playlist_id": "UU5m3fwPYuobj29xSvg3xk8g",
+    "category": "중립/종합",
+    "description": "여야 주요 정치인 균형 인터뷰 및 패널 토론",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCLv3v82YNNsa8EsxrcPMjGQ",
+    "channel_name": "SBS 김태현의 정치쇼",
+    "handle": "@sbs_politics",
+    "uploads_playlist_id": "UULv3v82YNNsa8EsxrcPMjGQ",
+    "category": "중립/종합",
+    "description": "라디오 시사 프로그램, 여야 패널의 균형 있는 토론",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCcQTRi69dsVYHN3exePtZ1A",
+    "channel_name": "KBS 뉴스",
+    "handle": "@newskbs",
+    "uploads_playlist_id": "UUcQTRi69dsVYHN3exePtZ1A",
+    "category": "중립/종합",
+    "description": "국가 기간방송사로서 원론적이고 중립적인 보도 지향",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCsU-I-vHLiaMfV_ceaYz5rQ",
+    "channel_name": "JTBC News",
+    "handle": "@jtbc_news",
+    "uploads_playlist_id": "UUsU-I-vHLiaMfV_ceaYz5rQ",
+    "category": "중립/종합",
+    "description": "다양한 시사 및 정치 이슈 종합 보도",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCIMOytYIzaUpoAM2bpT4JZQ",
+    "channel_name": "KTV 국민방송",
+    "handle": "@KTV_korea",
+    "uploads_playlist_id": "UUIMOytYIzaUpoAM2bpT4JZQ",
+    "category": "중립/종합",
+    "description": "정부 공식 정책 채널 (가공 없는 브리핑 등 제공)",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCAAvO0ehWox1bbym3rXKBZw",
+    "channel_name": "김어준의 겸손은힘들다 뉴스공장",
+    "handle": "@gyeomsonisnothing",
+    "uploads_playlist_id": "UUAAvO0ehWox1bbym3rXKBZw",
+    "category": "진보",
+    "description": "진보 진영 최대 규모의 시사/정치 방송",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCeFUGS2VCOb6DO3BiUgvwNA",
+    "channel_name": "뉴스타파",
+    "handle": "@newstapa",
+    "uploads_playlist_id": "UUeFUGS2VCOb6DO3BiUgvwNA",
+    "category": "진보",
+    "description": "권력 감시 및 탐사보도 전문 매체",
+    "enabled": true
+  },
+  {
+    "channel_id": "UClAfLVQYZSLrMAQQ_SXPVZw",
+    "channel_name": "오마이TV",
+    "handle": "@OhmynewsTV",
+    "uploads_playlist_id": "UUlAfLVQYZSLrMAQQ_SXPVZw",
+    "category": "진보",
+    "description": "진보 인터넷 매체의 시사 프로그램 및 현장 중계",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCu1FzjrHosuKGvgIx8oBi8w",
+    "channel_name": "새날",
+    "handle": "@saenal",
+    "uploads_playlist_id": "UUu1FzjrHosuKGvgIx8oBi8w",
+    "category": "진보",
+    "description": "대표적인 대형 정치 팟캐스트/유튜브 채널",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCUxTPRSns--l5BX2537u7Rw",
+    "channel_name": "서울의 소리",
+    "handle": "@VoiceOfSeoul",
+    "uploads_playlist_id": "UUUxTPRSns--l5BX2537u7Rw",
+    "category": "진보",
+    "description": "현장 중심의 강경 진보 성향 시사 매체",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCd4BxCKyMHG2J0X1SerTPaQ",
+    "channel_name": "이동형TV",
+    "handle": "@DHLeeTV",
+    "uploads_playlist_id": "UUd4BxCKyMHG2J0X1SerTPaQ",
+    "category": "진보",
+    "description": "정치 평론가 이동형의 진보 시사 채널",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCljnbFCt-4doBr7wtEIIbbw",
+    "channel_name": "김용민TV",
+    "handle": "@kimyongminTV",
+    "uploads_playlist_id": "UUljnbFCt-4doBr7wtEIIbbw",
+    "category": "진보",
+    "description": "시사 평론 및 진보 성향 인터뷰, 논평",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCIMv9bOOGWGIfg6wPcRLItQ",
+    "channel_name": "박시영TV",
+    "handle": "@parksiyoungTV",
+    "uploads_playlist_id": "UUIMv9bOOGWGIfg6wPcRLItQ",
+    "category": "진보",
+    "description": "여론조사 전문가의 선거 및 정치 지형 분석",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCJS9VvReVkplPwCIbxnbsjQ",
+    "channel_name": "사람사는세상 노무현재단",
+    "handle": "@443RohmoohyunFoundation",
+    "uploads_playlist_id": "UUJS9VvReVkplPwCIbxnbsjQ",
+    "category": "진보",
+    "description": "유시민의 알릴레오 등 진보 담론 형성",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCgZrbHKVOCdL4R_ibLGasCQ",
+    "channel_name": "시민언론 더탐사",
+    "handle": "@citizenpress_thetamsa",
+    "uploads_playlist_id": "UUgZrbHKVOCdL4R_ibLGasCQ",
+    "category": "진보",
+    "description": "진보 성향의 탐사 기획 보도 및 이슈 추적",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCOqCunaF9qVN8bXwsK0HT3g",
+    "channel_name": "펜앤드마이크TV",
+    "handle": "@penn1TV",
+    "uploads_playlist_id": "UUOqCunaF9qVN8bXwsK0HT3g",
+    "category": "보수",
+    "description": "정통 보수 시각의 뉴스 보도 및 심층 분석",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCxuf3GXK290vcpFW0lxm0Uw",
+    "channel_name": "이봉규TV (봉규TV)",
+    "handle": "@bonggyuTV",
+    "uploads_playlist_id": "UUxuf3GXK290vcpFW0lxm0Uw",
+    "category": "보수",
+    "description": "보수적 시각의 강도 높은 비판 및 평론",
+    "enabled": true
+  },
+  {
+    "channel_id": "UC0M-_02RJqMlGTKUjF1WhJg",
+    "channel_name": "가로세로연구소",
+    "handle": "@hoverlab",
+    "uploads_playlist_id": "UU0M-_02RJqMlGTKUjF1WhJg",
+    "category": "보수",
+    "description": "이슈 폭로 및 강도 높은 보수 우파 시사 평론",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCM8BcGB6BWKq3utIMhGKnUA",
+    "channel_name": "고성국TV",
+    "handle": "@GoseongkukTV",
+    "uploads_playlist_id": "UUM8BcGB6BWKq3utIMhGKnUA",
+    "category": "보수",
+    "description": "정치평론가의 정통 보수 시각 정국 분석",
+    "enabled": true
+  },
+  {
+    "channel_id": "UC1pZJohsg1cn4NOYdRsR0dA",
+    "channel_name": "성창경TV",
+    "handle": "@SckTV",
+    "uploads_playlist_id": "UU1pZJohsg1cn4NOYdRsR0dA",
+    "category": "보수",
+    "description": "언론인 출신의 보수 논평 및 뉴스 분석",
+    "enabled": true
+  },
+  {
+    "channel_id": "UC9fCNfynsV3DY2TnuUGfyYw",
+    "channel_name": "배승희 변호사",
+    "handle": "@baeseunghee",
+    "uploads_playlist_id": "UU9fCNfynsV3DY2TnuUGfyYw",
+    "category": "보수",
+    "description": "보수 우파 시각의 정치 현안 평론 및 대담",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCR0VAgd0w8QI7WWQ0E8Srdw",
+    "channel_name": "황장수의 뉴스브리핑",
+    "handle": "@HwangJangSoo",
+    "uploads_playlist_id": "UUR0VAgd0w8QI7WWQ0E8Srdw",
+    "category": "보수",
+    "description": "보수적 시각의 정치, 경제 현안 심층 비판",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCXvQXTcC77Nav46NYc4FtDA",
+    "channel_name": "어벤저스전략회의",
+    "handle": "@avengers_strategy",
+    "uploads_playlist_id": "UUXvQXTcC77Nav46NYc4FtDA",
+    "category": "보수",
+    "description": "보수 성향 패널들의 정치 현안 대담 및 분석",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCNzWZmsJ2QmBss30LeZZTdg",
+    "channel_name": "서정욱 변호사",
+    "handle": "@lawyer_seo",
+    "uploads_playlist_id": "UUNzWZmsJ2QmBss30LeZZTdg",
+    "category": "보수",
+    "description": "보수 진영의 논리로 주요 정치 및 법조 이슈 평론",
+    "enabled": true
+  },
+  {
+    "channel_id": "UCuCECsh_wb-C4loI4xboWVw",
+    "channel_name": "젊은 시각",
+    "handle": "@young_view",
+    "uploads_playlist_id": "UUuCECsh_wb-C4loI4xboWVw",
+    "category": "보수",
+    "description": "청년 보수 우파 관점에서의 주요 뉴스 리뷰 및 비판",
+    "enabled": true
+  }
+]

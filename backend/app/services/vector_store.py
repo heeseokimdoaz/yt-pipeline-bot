@@ -69,6 +69,7 @@ def store_videos(videos: list[VideoData], run_id: str) -> int:
                 "like_count": v.like_count or 0,
                 "thumbnail_url": v.thumbnail_url,
                 "tags": ", ".join(v.tags[:20]),
+                "channel_category": v.channel_category,
             }
         )
 
@@ -166,6 +167,43 @@ def search_similar(
             )
 
     return search_results
+
+
+def get_existing_video_ids(video_ids: list[str]) -> set[str]:
+    """Check which video IDs already exist in ChromaDB. Used for deduplication."""
+    if not video_ids:
+        return set()
+    collection = get_collection("videos")
+    try:
+        results = collection.get(ids=video_ids)
+        return set(results["ids"]) if results and results["ids"] else set()
+    except Exception:
+        return set()
+
+
+def get_all_video_ids() -> list[str]:
+    """Return all video IDs stored in ChromaDB."""
+    collection = get_collection("videos")
+    results = collection.get(include=[])
+    return results["ids"] if results and results["ids"] else []
+
+
+def get_video_ids_with_subtitles() -> set[str]:
+    """Return set of video IDs that already have subtitle chunks."""
+    collection = get_collection("subtitles")
+    results = collection.get(include=["metadatas"])
+    if not results or not results["metadatas"]:
+        return set()
+    return {m["video_id"] for m in results["metadatas"] if m.get("video_id")}
+
+
+def get_video_ids_with_comments() -> set[str]:
+    """Return set of video IDs that already have comments."""
+    collection = get_collection("comments")
+    results = collection.get(include=["metadatas"])
+    if not results or not results["metadatas"]:
+        return set()
+    return {m["video_id"] for m in results["metadatas"] if m.get("video_id")}
 
 
 def get_video_data(run_id: str | None = None) -> list[dict]:

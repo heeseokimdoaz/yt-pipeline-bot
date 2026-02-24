@@ -5,6 +5,9 @@ import type {
   SubtitleChunk,
   Comment,
   SearchResult,
+  CrawlRunSummary,
+  ChannelConfig,
+  CrawlerScheduleInfo,
 } from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8101";
@@ -78,4 +81,66 @@ export async function searchSimilar(
       n_results: nResults,
     }),
   });
+}
+
+// === Crawler API ===
+
+export async function triggerCrawl() {
+  return fetchJSON<CrawlRunSummary>("/api/crawler/trigger/sync", {
+    method: "POST",
+  });
+}
+
+export async function getCrawlHistory() {
+  return fetchJSON<CrawlRunSummary[]>("/api/crawler/history");
+}
+
+export async function getCrawlStatus(runId: string) {
+  return fetchJSON<CrawlRunSummary>(`/api/crawler/status/${runId}`);
+}
+
+export async function getChannels() {
+  return fetchJSON<{
+    channels: ChannelConfig[];
+    total: number;
+    enabled: number;
+  }>("/api/crawler/channels");
+}
+
+export async function getCrawlerSchedule() {
+  return fetchJSON<CrawlerScheduleInfo>("/api/crawler/schedule");
+}
+
+export async function syncChannelsFromCsv() {
+  return fetchJSON<{
+    total: number;
+    added: number;
+    removed: string[];
+    resolved: number;
+    unresolved: string[];
+  }>("/api/crawler/sync", { method: "POST" });
+}
+
+export async function uploadChannelsCsv(csvContent: string) {
+  const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8101";
+  const res = await fetch(`${API}/api/crawler/upload-csv`, {
+    method: "POST",
+    headers: { "Content-Type": "text/csv" },
+    body: csvContent,
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`API error ${res.status}: ${text}`);
+  }
+  return res.json();
+}
+
+export async function reprocessMissing() {
+  return fetchJSON<{
+    total_videos: number;
+    missing_subtitles: number;
+    missing_comments: number;
+    subtitles_added: number;
+    comments_added: number;
+  }>("/api/crawler/reprocess", { method: "POST" });
 }
